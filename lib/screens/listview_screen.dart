@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dignal_2023/screens/estados_provider_screen.dart';
+import 'package:flutter_dignal_2023/screens/estados_screen.dart';
+import 'package:flutter_dignal_2023/screens/mensajes_screen.dart';
 import 'package:flutter_dignal_2023/screens/widgets_estructura_screen.dart';
+import 'package:flutter_dignal_2023/screens/formularios_screen.dart';
 
 class ListviewScreen extends StatelessWidget {
   const ListviewScreen({super.key});
@@ -66,64 +70,46 @@ class ListviewScreen extends StatelessWidget {
             onLongPress: () => print('Long press'),
           ),
           ListTile(
-            leading: Icon(Icons.alarm),
-            title: Text('Titulo'),
-            subtitle: Text('Subtitulo'),
+            //leading: Icon(Icons.alarm),
+            title: Text('Estados con Statefull'),
+            subtitle: Text('Ejemplo de estados utilizando un stateful'),
             trailing: Icon(Icons.chevron_right),
+            onTap: () {
+              print('Enviando a widgets de estructura');
+              Navigator.pushNamed(context, EstadosScreen.route);
+            },
+            onLongPress: () => print('Long press'),
           ),
           ListTile(
-            leading: Icon(Icons.alarm),
-            title: Text('Titulo'),
-            subtitle: Text('Subtitulo'),
+            //leading: Icon(Icons.alarm),
+            title: Text('Estados con Provider'),
+            subtitle: Text('Ejemplo de estados utilizando un provider'),
             trailing: Icon(Icons.chevron_right),
+            onTap: () {
+              print('Enviando a estados con provider');
+              Navigator.pushNamed(context, EstadosProviderScreen.route);
+            },
+            onLongPress: () => print('Long press'),
           ),
           ListTile(
-            leading: Icon(Icons.alarm),
-            title: Text('Titulo'),
-            subtitle: Text('Subtitulo'),
+            //leading: Icon(Icons.alarm),
+            title: Text('Mensajes/Alertas'),
+            subtitle: Text('Ejemplo de mensajes y alertas'),
             trailing: Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.pushNamed(context, MensajesScreen.route);
+            },
+            onLongPress: () => print('Long press'),
           ),
           ListTile(
-            leading: Icon(Icons.alarm),
-            title: Text('Titulo'),
-            subtitle: Text('Subtitulo'),
+            //leading: Icon(Icons.alarm),
+            title: Text('Formulario'),
+            subtitle: Text('Ejemplo de formulario'),
             trailing: Icon(Icons.chevron_right),
-          ),
-          ListTile(
-            leading: Icon(Icons.alarm),
-            title: Text('Titulo'),
-            subtitle: Text('Subtitulo'),
-            trailing: Icon(Icons.chevron_right),
-          ),
-          ListTile(
-            leading: Icon(Icons.alarm),
-            title: Text('Titulo'),
-            subtitle: Text('Subtitulo'),
-            trailing: Icon(Icons.chevron_right),
-          ),
-          ListTile(
-            leading: Icon(Icons.alarm),
-            title: Text('Titulo'),
-            subtitle: Text('Subtitulo'),
-            trailing: Icon(Icons.chevron_right),
-          ),
-          ListTile(
-            leading: Icon(Icons.alarm),
-            title: Text('Titulo'),
-            subtitle: Text('Subtitulo'),
-            trailing: Icon(Icons.chevron_right),
-          ),
-          ListTile(
-            leading: Icon(Icons.alarm),
-            title: Text('Titulo'),
-            subtitle: Text('Subtitulo'),
-            trailing: Icon(Icons.chevron_right),
-          ),
-          ListTile(
-            leading: Icon(Icons.alarm),
-            title: Text('Titulo'),
-            subtitle: Text('Subtitulo'),
-            trailing: Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.pushNamed(context, FormulariosScreen.route);
+            },
+            onLongPress: () => print('Long press'),
           ),
         ],
       ),

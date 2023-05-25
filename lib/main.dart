@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dignal_2023/providers/estados_provider.dart';
+import 'package:flutter_dignal_2023/screens/estados_provider_screen.dart';
+import 'package:flutter_dignal_2023/screens/estados_screen.dart';
+import 'package:flutter_dignal_2023/screens/formularios_screen.dart';
 import 'package:flutter_dignal_2023/screens/listview_screen.dart';
+import 'package:flutter_dignal_2023/screens/mensajes_screen.dart';
 import 'package:flutter_dignal_2023/screens/widgets_estructura_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,18 +18,29 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => EstadosProvider(),
+        )
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        //home: const MyHomePage(title: 'Nueva ventana'),
+        //home: ListviewScreen(),
+        initialRoute: ListviewScreen.route,
+        routes: {
+          ListviewScreen.route: (context) => ListviewScreen(),
+          WidgetsEstructuraScreen.route: (context) => WidgetsEstructuraScreen(),
+          EstadosScreen.route: (context) => EstadosScreen(),
+          EstadosProviderScreen.route: (context) => EstadosProviderScreen(),
+          MensajesScreen.route: (context) => MensajesScreen(),
+          FormulariosScreen.route: (context) => FormulariosScreen(),
+        },
       ),
-      //home: const MyHomePage(title: 'Nueva ventana'),
-      //home: ListviewScreen(),
-      initialRoute: ListviewScreen.route,
-      routes: {
-        ListviewScreen.route: (context) => ListviewScreen(),
-        WidgetsEstructuraScreen.route: (context) => WidgetsEstructuraScreen()
-      },
     );
   }
 }

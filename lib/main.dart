@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dignal_2023/providers/devices_provider.dart';
 import 'package:flutter_dignal_2023/providers/estados_provider.dart';
+import 'package:flutter_dignal_2023/providers/users_provider.dart';
 import 'package:flutter_dignal_2023/screens/estados_provider_screen.dart';
 import 'package:flutter_dignal_2023/screens/estados_screen.dart';
 import 'package:flutter_dignal_2023/screens/formularios_screen.dart';
 import 'package:flutter_dignal_2023/screens/listview_screen.dart';
 import 'package:flutter_dignal_2023/screens/mensajes_screen.dart';
 import 'package:flutter_dignal_2023/screens/widgets_estructura_screen.dart';
+import 'package:flutter_dignal_2023/screens/app/screens.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -22,17 +25,29 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => EstadosProvider(),
-        )
+        ),
+        ChangeNotifierProvider(create: ((context) => UsersProvider())),
+        ChangeNotifierProvider(create: ((context) => DevicesProvider())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        //theme: ThemeData(
+        //  primarySwatch: Colors.blue,
+        //),
+        theme: ThemeData.dark(),
         //home: const MyHomePage(title: 'Nueva ventana'),
         //home: ListviewScreen(),
-        initialRoute: ListviewScreen.route,
+        initialRoute: LoginScreen.route,
         routes: {
+//Pantallas de Aplicacion
+          LoginScreen.route: (context) => LoginScreen(),
+          DashboardScreen.route: (context) => DashboardScreen(),
+          UsersScreen.route: (context) => UsersScreen(),
+          UsersFormScreen.route: (context) => UsersFormScreen(),
+          DevicesScreen.route: (context) => DevicesScreen(),
+          DevicesFormScreen.route: (context) => DevicesFormScreen(),
+          DevicesDetailScreen.route: (context) => DevicesDetailScreen(),
+          //Pantallas Base
           ListviewScreen.route: (context) => ListviewScreen(),
           WidgetsEstructuraScreen.route: (context) => WidgetsEstructuraScreen(),
           EstadosScreen.route: (context) => EstadosScreen(),

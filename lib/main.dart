@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         initialRoute: LoginScreen.route,
         routes: {
 //Pantallas de Aplicacion
-          LoginScreen.route: (context) => LoginScreen(),
+          LoginScreen.route: (context) => const LoginScreen(),
           DashboardScreen.route: (context) => DashboardScreen(),
           UsersScreen.route: (context) => UsersScreen(),
           UsersFormScreen.route: (context) => UsersFormScreen(),

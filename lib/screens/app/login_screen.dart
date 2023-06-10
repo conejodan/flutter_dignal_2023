@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dignal_2023/providers/login_form_provider.dart';
 import 'package:flutter_dignal_2023/screens/app/screens.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert' as convert;
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -102,21 +104,7 @@ class LoginForm extends StatelessWidget {
                       FocusManager.instance.primaryFocus?.unfocus();
                       if (loginProvider.validate()) {
                         final response = await loginProvider.login();
-                        if (response) {
-                          Navigator.of(context)
-                              .pushReplacementNamed(DashboardScreen.route);
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                "Hubo un error en la solicitud",
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                              backgroundColor: Colors.red,
-                              behavior: SnackBarBehavior.floating,
-                            ),
-                          );
-                        }
+                        await checkResponse(response, context);
                       }
                     },
               child: Padding(
@@ -139,5 +127,33 @@ class LoginForm extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> checkResponse(response, context) async {
+    if (response.statusCode == 200) {
+      print("Respuesta correcta");
+      var jsonResponse =
+          convert.jsonDecode(response.body) as Map<String, dynamic>;
+      print(jsonResponse);
+      final data = jsonResponse['data'];
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', data['token']);
+      prefs.setInt('id', data['user']['id']);
+      prefs.setString('name', data['user']['name']);
+      prefs.setString('username', data['user']['username']);
+      Navigator.of(context).pushReplacementNamed(DashboardScreen.route);
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            "Hubo un error en la solicitud",
+            style: const TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.red,
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
   }
 }

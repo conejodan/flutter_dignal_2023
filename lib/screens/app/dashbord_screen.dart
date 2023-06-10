@@ -61,6 +61,24 @@ class _DashboardBody extends StatelessWidget {
             section: 'Devices',
           ),
         ),
+        InkWell(
+          onTap: () => Navigator.of(context).pushNamed(devicesRoute),
+          child: CustomSectionDataCard(
+            value: "123",
+            color: Colors.green.shade200,
+            //icon: Icons.device_hub_sharp,
+            //section: 'Devices',
+          ),
+        ),
+        InkWell(
+          onTap: () => Navigator.of(context).pushNamed(devicesRoute),
+          child: CustomSectionDataCard(
+            value: "123",
+            color: Colors.yellow.shade200,
+            icon: Icons.device_hub_sharp,
+            //section: 'Devices',
+          ),
+        ),
       ],
     );
   }

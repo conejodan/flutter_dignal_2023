@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dignal_2023/services/my_server.dart';
 import 'package:http/http.dart' as http;
 
 class LoginFormProvider extends ChangeNotifier {
@@ -26,14 +27,10 @@ class LoginFormProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    //await Future.delayed(Duration(seconds: 2));
-    var url = Uri.http('192.168.100.33:4902', '/api/login');
-
-    // Await the http get response, then decode the json-formatted response.
-    var response = await http.post(url, body: {
-      'username': username,
-      'password': password,
-    });
+    final response = await MyServer().login(
+      username: username,
+      password: password,
+    );
 
     isLoading = false;
     notifyListeners();

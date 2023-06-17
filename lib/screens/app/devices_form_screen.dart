@@ -64,7 +64,20 @@ class DeviceForm extends StatelessWidget {
             onClick: () async {
               FocusManager.instance.primaryFocus?.unfocus();
               if (deviceForm.validate()) {
-                Navigator.of(context).pop();
+                final resp = device.id == null
+                    ? await deviceForm.createDevice()
+                    : await deviceForm.updateDevice();
+                if (resp) {
+                  print('Device Created/Updated');
+                  final devicesProvider =
+                      Provider.of<DevicesProvider>(context, listen: false);
+                  devicesProvider.isLoading = true;
+                  await devicesProvider.getDevices();
+                  devicesProvider.isLoading = false;
+                  Navigator.of(context).pop();
+                } else {
+                  print('Device no Created');
+                }
               }
             },
           ),

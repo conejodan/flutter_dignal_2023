@@ -122,6 +122,12 @@ class _DeviceDetail extends StatelessWidget {
             ),
           ],
         ),
+        Slider(
+            value: deviceProvider.lights.isNotEmpty
+                ? deviceProvider.lights[deviceProvider.lights.length - 1]
+                : 0.0,
+            max: 100,
+            onChanged: (value) {}),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

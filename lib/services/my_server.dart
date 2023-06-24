@@ -40,8 +40,9 @@ class MyServer {
     final token = prefs.getString('token');
     final url = Uri.http(_baseUrlApi, '/api/users');
     try {
-      final resp =
-          await http.get(url, headers: {'Authorization': 'Bearer $token'});
+      final resp = await http.get(url, headers: {
+        'Authorization': 'Bearer $token',
+      });
       if (resp.statusCode == 200) {
         final decode = jsonDecode(resp.body);
         final List userList = decode['data'];

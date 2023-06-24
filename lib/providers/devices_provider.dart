@@ -100,6 +100,14 @@ class DevicesProvider extends ChangeNotifier {
       led = value;
       socket?.emit('led', value);
       notifyListeners();
+      emitCommand("AB");
+    }
+  }
+
+  emitCommand(value) {
+    if (socket != null) {
+      socket?.emit('command', value);
+      notifyListeners();
     }
   }
 }

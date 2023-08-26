@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dignal_2023/providers/devices_provider.dart';
 import 'package:flutter_dignal_2023/providers/estados_provider.dart';
 import 'package:flutter_dignal_2023/providers/users_provider.dart';
+import 'package:flutter_dignal_2023/screens/bluetooth_screen.dart';
+import 'package:flutter_dignal_2023/screens/cardio_screen.dart';
 import 'package:flutter_dignal_2023/screens/estados_provider_screen.dart';
 import 'package:flutter_dignal_2023/screens/estados_screen.dart';
 import 'package:flutter_dignal_2023/screens/formularios_screen.dart';
@@ -54,6 +56,8 @@ class MyApp extends StatelessWidget {
           EstadosProviderScreen.route: (context) => EstadosProviderScreen(),
           MensajesScreen.route: (context) => MensajesScreen(),
           FormulariosScreen.route: (context) => FormulariosScreen(),
+          BluetoothScreen.route: (context) => BluetoothScreen(),
+          CardioScreen.route: (context) => CardioScreen(),
         },
       ),
     );

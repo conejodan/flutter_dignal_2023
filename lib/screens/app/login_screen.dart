@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dignal_2023/providers/login_form_provider.dart';
 import 'package:flutter_dignal_2023/screens/app/screens.dart';
+import 'package:flutter_dignal_2023/screens/listview_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert' as convert;
@@ -19,7 +20,11 @@ class LoginScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/logo.png'),
+          GestureDetector(
+            child: Image.asset('assets/logo.png'),
+            onTap: () =>
+                {Navigator.pushReplacementNamed(context, ListviewScreen.route)},
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Container(

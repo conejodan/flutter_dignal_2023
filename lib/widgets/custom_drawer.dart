@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dignal_2023/screens/app/screens.dart';
+import 'package:flutter_dignal_2023/screens/bluetooth_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -36,6 +37,14 @@ class CustomDrawer extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
             onTap: () =>
                 Navigator.of(context).popAndPushNamed(DevicesScreen.route),
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.bluetooth),
+            title: Text('Bluetooth'),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () =>
+                Navigator.of(context).popAndPushNamed(BluetoothScreen.route),
           ),
           Divider(),
           ListTile(

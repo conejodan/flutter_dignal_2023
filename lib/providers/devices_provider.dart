@@ -18,12 +18,13 @@ class DevicesProvider extends ChangeNotifier {
     getDevices();
   }
 
-  late Device selectedDevice;
+  late Device selectedDevice = Device();
 
   List<double> temperatures = [];
   List<double> lights = [];
-  List<TimeSeriesData> lightsTimeData = [];
   bool led = true;
+  List<TimeSeriesData> lightsTimeData = [];
+  List<TimeSeriesData> temperatureTimeData = [];
   ServerStatus connection = ServerStatus.offline;
   // List<Device> devices = List.generate(
   //   20,
@@ -78,6 +79,10 @@ class DevicesProvider extends ChangeNotifier {
       //print(data["temperature"]);
       int temperatureInt = data["temperature"];
       temperatures.add(temperatureInt.toDouble());
+      temperatureTimeData.add(TimeSeriesData(
+        time: DateTime.now(),
+        data: temperatureInt.toDouble(),
+      ));
       notifyListeners();
     });
     socket?.on('light', (data) {

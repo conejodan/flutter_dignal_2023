@@ -19,6 +19,12 @@ class DevicesDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Device Detail'),
+        actions: [
+          SizedBox(
+            child: Image.asset('assets/logo.png'),
+            width: 120,
+          )
+        ],
       ),
       body: _DeviceDetail(),
     );
@@ -126,7 +132,7 @@ class _DeviceDetail extends StatelessWidget {
             value: deviceProvider.lights.isNotEmpty
                 ? deviceProvider.lights[deviceProvider.lights.length - 1]
                 : 0.0,
-            max: 100,
+            max: 1024,
             onChanged: (value) {}),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -135,21 +141,105 @@ class _DeviceDetail extends StatelessWidget {
               value: deviceProvider.lights.isNotEmpty
                   ? deviceProvider.lights[deviceProvider.lights.length - 1]
                   : 0.0,
-              maxValue: 100,
+              maxValue: 1024,
               title: 'Light',
             ),
             CustomGauge(
-              value: 35,
-              maxValue: 120,
-              title: 'Gass',
+              value: deviceProvider.temperatures.isNotEmpty
+                  ? deviceProvider
+                      .temperatures[deviceProvider.temperatures.length - 1]
+                  : 0.0,
+              maxValue: 90,
+              minValue: -20,
+              title: 'Temperature',
               segments: [
-                GaugeSegment('Low', 20, Colors.red),
-                GaugeSegment('Low-Middle', 20, Colors.orange),
-                GaugeSegment('Middle', 20, Colors.yellow),
-                GaugeSegment('Middle', 20, Colors.green.shade200),
-                GaugeSegment('Middle', 20, Colors.green),
-                GaugeSegment('Middle', 20, Colors.green.shade900),
+                GaugeSegment('1', 10, Colors.blue.shade900),
+                GaugeSegment('1', 10, Colors.blue),
+                GaugeSegment('1', 20, Colors.green.shade900),
+                GaugeSegment('2', 20, Colors.green),
+                GaugeSegment('3', 20, Colors.green.shade200),
+                GaugeSegment('4', 10, Colors.yellow),
+                GaugeSegment('5', 10, Colors.orange),
+                GaugeSegment('6', 10, Colors.red),
               ],
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Temperatura",
+              style: TextStyle(
+                  color: Colors.grey.shade300,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400),
+            ),
+          ],
+        ),
+        Container(
+          width: 100,
+          height: 300,
+          margin: EdgeInsets.all(10),
+          child: LineChart(
+            LineChartData(
+              //maxY: 40,
+              minY: 0,
+              borderData: FlBorderData(
+                show: true,
+                border: Border.all(
+                  color: Colors.white38,
+                  width: 2,
+                ),
+              ),
+              titlesData: FlTitlesData(
+                topTitles: AxisTitles(),
+                rightTitles: AxisTitles(),
+                bottomTitles: AxisTitles(
+                  drawBehindEverything: true,
+                  sideTitles: SideTitles(
+                    showTitles: false,
+                  ),
+                ),
+              ),
+              lineBarsData: [
+                LineChartBarData(
+                  barWidth: 2,
+                  belowBarData: BarAreaData(
+                    show: true,
+                    color: Color.fromARGB(55, 33, 149, 243),
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color.fromARGB(0, 104, 176, 236),
+                        Color.fromARGB(195, 33, 149, 243),
+                      ],
+                    ),
+                  ),
+                  isCurved: false,
+                  spots: deviceProvider.temperatureTimeData
+                      .map(
+                        (e) => FlSpot(
+                          e.time.millisecondsSinceEpoch.toDouble(),
+                          e.data.toDouble(),
+                        ),
+                      )
+                      .toList(),
+                )
+              ],
+            ),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Luz",
+              style: TextStyle(
+                  color: Colors.grey.shade300,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400),
             ),
           ],
         ),

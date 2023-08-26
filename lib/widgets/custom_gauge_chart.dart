@@ -5,6 +5,7 @@ class CustomGauge extends StatelessWidget {
   final double value;
   final String title;
   final double maxValue;
+  final double minValue;
   final Color primaryColor;
   final Color secondaryColor;
   final List<GaugeSegment>? segments;
@@ -13,6 +14,7 @@ class CustomGauge extends StatelessWidget {
     required this.value,
     this.title = '',
     this.maxValue = 100,
+    this.minValue = 0,
     this.primaryColor = Colors.blue,
     this.secondaryColor = Colors.grey,
     this.segments,
@@ -23,7 +25,7 @@ class CustomGauge extends StatelessWidget {
     return PrettyGauge(
       gaugeSize: 170,
       showMarkers: false,
-      minValue: 0,
+      minValue: minValue,
       maxValue: maxValue,
       segments: segments ??
           [

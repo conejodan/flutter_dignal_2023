@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dignal_2023/screens/app/screens.dart';
+import 'package:flutter_dignal_2023/screens/bluetooth_screen.dart';
+import 'package:flutter_dignal_2023/screens/cardio_screen.dart';
 import 'package:flutter_dignal_2023/screens/estados_provider_screen.dart';
 import 'package:flutter_dignal_2023/screens/estados_screen.dart';
 import 'package:flutter_dignal_2023/screens/mensajes_screen.dart';
@@ -108,6 +111,36 @@ class ListviewScreen extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
             onTap: () {
               Navigator.pushNamed(context, FormulariosScreen.route);
+            },
+            onLongPress: () => print('Long press'),
+          ),
+          ListTile(
+            //leading: Icon(Icons.alarm),
+            title: Text('Bluetooth'),
+            subtitle: Text('Ejemplo de bluetooth'),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.pushNamed(context, BluetoothScreen.route);
+            },
+            onLongPress: () => print('Long press'),
+          ),
+          ListTile(
+            //leading: Icon(Icons.alarm),
+            title: Text('Cardio'),
+            subtitle: Text('Ejemplo de Cardio'),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.pushNamed(context, CardioScreen.route);
+            },
+            onLongPress: () => print('Long press'),
+          ),
+          ListTile(
+            //leading: Icon(Icons.alarm),
+            title: Text('DignalApp'),
+            subtitle: Text('Aplicacion de Dignal'),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.pushNamed(context, LoginScreen.route);
             },
             onLongPress: () => print('Long press'),
           ),

@@ -44,6 +44,7 @@ dependencies:
   fl_chart: ^0.62.0
   flutter_launcher_icons: ^0.12.0
   flutter_native_splash: ^2.2.18
+  flutter_blue: ^0.8.0
 
 dev_dependencies:
   flutter_test:

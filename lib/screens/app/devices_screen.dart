@@ -83,6 +83,7 @@ class CustomDeviceListTile extends StatelessWidget {
                       final devicesProvider =
                           Provider.of<DevicesProvider>(context, listen: false);
                       devicesProvider.selectedDevice = device;
+
                       Navigator.of(context)
                           .popAndPushNamed(DevicesFormScreen.route);
                     },
@@ -94,6 +95,10 @@ class CustomDeviceListTile extends StatelessWidget {
                       final devicesProvider =
                           Provider.of<DevicesProvider>(context, listen: false);
                       devicesProvider.selectedDevice = device;
+                      devicesProvider.temperatures = [];
+                      devicesProvider.lights = [];
+                      devicesProvider.temperatureTimeData = [];
+                      devicesProvider.lightsTimeData = [];
                       Navigator.of(context)
                           .popAndPushNamed(DevicesDetailScreen.route);
                     },
